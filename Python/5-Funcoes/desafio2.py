@@ -2,6 +2,7 @@
 # Fazer uma contagem de 0 a 10 usando recursão
 # Fazer a mesma contagem, mas regressiva, de 10 a 0
 
+# contagem progressiva
 def contagem_p(nIp,nFp):
     if nIp == nFp:
         print(nFp)
@@ -11,6 +12,7 @@ def contagem_p(nIp,nFp):
     
 #contagem_p(0,10)
 
+#contagem regressiva
 def contagem_r(nIr,nFr):
     if nIr == nFr:
         print(nFr)
