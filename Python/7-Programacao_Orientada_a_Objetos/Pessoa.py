@@ -13,11 +13,11 @@ class Pessoa:
         print(self.idade)
 
     #método construtor
-    #def __init__(self, nome, idade):
-    #    self.nome = nome
-    #    self.idade = idade
-    #    print(self.nome)
-    #    print(self.idade)
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+        print(self.nome)
+        print(self.idade)
 
     #GETTERS E SETTERS
     @property
