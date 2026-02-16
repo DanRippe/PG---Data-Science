@@ -1,0 +1,183 @@
+create table aluno (
+    ra number(5),
+    nome_aluno varchar2(100),
+    data_matricula date
+)
+
+Table ALUNO created.
+
+Elapsed: 00:00:00.010
+
+create table disciplina (
+    cod_disciplina number(3) primary key,
+    nome_disciplina varchar2(50) not null,
+    carga_horaria_disciplina number(3)
+)
+
+Table DISCIPLINA created.
+
+Elapsed: 00:00:00.018
+
+create table professor (
+    rp number(5) primary key,
+    nome_professor varchar2(100) not null,
+    data_nasc date,
+    genero char(1) check(genero='M' or genero='F' or genero='O'),
+    cpf varchar2(11) unique,
+    cod_disciplina number(3) references disciplina(cod_disciplina)
+)
+
+Table PROFESSOR created.
+
+Elapsed: 00:00:00.025
+
+SQL> describe aluno
+
+
+Name           Null? Type          
+-------------- ----- ------------- 
+RA                   NUMBER(5)     
+NOME_ALUNO           VARCHAR2(100) 
+DATA_MATRICULA       DATE     
+
+SQL> alter table aluno
+     add data_nasc date
+     modify nome_aluno varcha2(150) not null
+
+ORA-01735: invalid ALTER TABLE option
+
+https://docs.oracle.com/error-help/db/ora-01735/
+Error at Line: 4 Column: 0
+
+SQL> alter table aluno
+     add data_nasc date
+     modify nome_aluno varchar2(150) not null
+
+
+
+Table ALUNO altered.
+
+Elapsed: 00:00:00.021
+
+SQL> alter table nome_aluno
+     rename column data_nasc to data_nascimento
+
+ORA-00942: table or view does not exist
+
+https://docs.oracle.com/error-help/db/ora-00942/
+Error at Line: 4 Column: 0
+
+SQL> alter table aluno
+     rename column data_nasc to data_nascimento
+
+
+
+Table ALUNO altered.
+
+Elapsed: 00:00:00.011
+
+SQL> describe aluno
+
+
+Name            Null?    Type          
+--------------- -------- ------------- 
+RA                       NUMBER(5)     
+NOME_ALUNO      NOT NULL VARCHAR2(150) 
+DATA_MATRICULA           DATE          
+DATA_NASCIMENTO          DATE          
+
+SQL> alter table aluno
+     drop column nome_aluno
+
+
+
+Table ALUNO altered.
+
+Elapsed: 00:00:00.054
+
+SQL> describe aluno
+
+
+Name            Null? Type      
+--------------- ----- --------- 
+RA                    NUMBER(5) 
+DATA_MATRICULA        DATE      
+DATA_NASCIMENTO       DATE      
+
+SQL> alter table aluno
+     add constraint pk_alu primary key(ra)
+
+
+
+Table ALUNO altered.
+
+Elapsed: 00:00:00.019
+
+SQL> describe aluno
+
+
+Name            Null?    Type      
+--------------- -------- --------- 
+RA              NOT NULL NUMBER(5) 
+DATA_MATRICULA           DATE      
+DATA_NASCIMENTO          DATE      
+
+SQL> rename aluno to alunos
+
+
+
+Table renamed.
+
+Elapsed: 00:00:00.009
+
+SQL> describe aluno
+
+ERROR:
+ORA-04043: object aluno does not exist
+Error at Line: 4 Column: 0
+
+SQL> describe alunos
+
+
+Name            Null?    Type      
+--------------- -------- --------- 
+RA              NOT NULL NUMBER(5) 
+DATA_MATRICULA           DATE      
+DATA_NASCIMENTO          DATE   
+
+SQL> escribe professor
+
+
+Error starting at line : 4 in command -
+escribe professor
+Error report -
+Unknown Command
+
+
+Error at Line: 4 Column: 0
+
+SQL> describe professor
+
+
+Name           Null?    Type          
+-------------- -------- ------------- 
+RP             NOT NULL NUMBER(5)     
+NOME_PROFESSOR NOT NULL VARCHAR2(100) 
+DATA_NASC               DATE          
+GENERO                  CHAR(1)       
+CPF                     VARCHAR2(11)  
+COD_DISCIPLINA          NUMBER(3)     
+
+SQL> drop table professor
+
+
+
+Table PROFESSOR dropped.
+
+Elapsed: 00:00:00.041
+
+SQL> describe professor
+
+ERROR:
+ORA-04043: object professor does not exist
+Error at Line: 4 Column: 0
