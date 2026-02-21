@@ -1,0 +1,87 @@
+create table dept (
+    deptno number(2) primary key,
+    dname varchar2(100),
+    loc varchar2(100)
+)
+
+
+Table DEPT created.
+
+Elapsed: 00:00:00.019
+
+SQL> describe dept
+
+
+Name   Null?    Type          
+------ -------- ------------- 
+DEPTNO NOT NULL NUMBER(2)     
+DNAME           VARCHAR2(100) 
+LOC             VARCHAR2(100) 
+
+SQL> insert into dept (deptno, dname, LOC)
+     values (10, 'comercial', 'SAO PAULO')
+
+
+
+1 row inserted.
+
+Elapsed: 00:00:00.017
+
+SQL> insert into dept values (20, 'financeiro', 'RIO DE JANEIRO')
+
+
+
+1 row inserted.
+
+Elapsed: 00:00:00.002
+
+SQL> insert into dept values (30, 'diretoria')
+
+ORA-00947: not enough values
+
+https://docs.oracle.com/error-help/db/ora-00947/
+Error at Line: 4 Column: 0
+
+SQL> insert into dept values (30, 'diretoria', null)
+
+
+
+1 row inserted.
+
+Elapsed: 00:00:00.005
+
+SQL> update dept
+     set LOC='BELO HORIZONTE'
+     where deptno=30
+
+
+
+1 row updated.
+
+Elapsed: 00:00:00.004
+
+SQL> update DEPT
+     set loc='CURITIBA'
+
+
+
+3 rows updated.
+
+Elapsed: 00:00:00.002
+
+SQL> delete from DEPT
+     where DEPTNO=10
+
+
+
+1 row deleted.
+
+Elapsed: 00:00:00.003
+
+SQL> delete DEPT
+
+
+
+2 rows deleted.
+
+Elapsed: 00:00:00.005
