@@ -1,0 +1,26 @@
+SELECT  SAL
+FROM    SCOTT.EMP
+WHERE   EMPNO = 7566;
+
+SELECT  ENAME, SAL, JOB
+FROM    SCOTT.EMP
+WHERE   SAL >   (SELECT SAL
+                FROM    SCOTT.EMP
+                WHERE   EMPNO = 7566);
+
+SELECT  ENAME, SAL, JOB
+FROM    SCOTT.EMP
+WHERE   SAL >   (SELECT SAL
+                FROM    SCOTT.EMP
+                WHERE   EMPNO = 7566)
+AND     JOB =   (SELECT JOB
+                FROM    SCOTT.EMP
+                WHERE   ENAME = 'FORD');
+
+SELECT  MIN(SAL)
+FROM    SCOTT.EMP;
+
+SELECT  ENAME, SAL, JOB
+FROM    SCOTT.EMP
+WHERE   SAL =   (SELECT MIN(SAL)
+                FROM    SCOTT.EMP);
